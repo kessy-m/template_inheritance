@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+{% block title%}register{% endblock %}
+{% block content%}
+
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form action="/register" method="post">
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="form1Example13">email address</label>
+                        <input type="text" name="email" id="form1Example13" class="form-control form-control-lg" />
+                    </div>
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="form1Example13">Full name</label>
+                        <input type="text"  name="full_name"id="form1Example13" class="form-control form-control-lg" />
+                    </div>
+
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="form1Example23">Password</label>
+                        <input type="text" name="password"id="form1Example23" class="form-control form-control-lg" />
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                        class="btn btn-primary btn-lg btn-block">REGISTER</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

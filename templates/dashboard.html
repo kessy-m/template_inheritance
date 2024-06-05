@@ -1,0 +1,86 @@
+{%extends 'base.html'%}
+{% block title%}dashboard{% endblock %}
+{% block content%}
+<h4>MY DASHBOARD</h4>
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-4">
+    <div class="col-xs-12 col-md-6">
+      <div class="bg-light rounded h-100 p-4">
+        <canvas id="bar-chart" width="800" height="450"></canvas>
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 col-md-6">
+      <div class="bg-light rounded h-100 p-4">
+        <canvas id="line-chart" width="800" height="450"></canvas>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+  <script>
+    new Chart(document.getElementById("bar-chart"), {
+      type: 'bar',
+      data: {
+        labels: {{ name | safe }},
+        datasets: [
+          {
+            label: "profit(ksh)",
+            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+            data: {{ profit | safe }}
+          }, {
+            label: "sales(ksh)",
+            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+            data: {{ s_pr | safe }}
+          }
+        ]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: 'profit & sales per day'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("line-chart"), {
+      type: 'line',
+      data: {
+        labels: {{ days | safe }},
+        datasets: [{
+          data: {{ s_pr | safe }},
+          label: "sales",
+          borderColor: "#3e95cd",
+          fill: false
+        }, {
+          data: {{ pr_day | safe }},
+          label: "profit",
+          borderColor: "#8e5ea2",
+          fill: false
+        }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'sales & profit per day'
+        }
+      }
+    });
+
+
+
+
+
+  </script>
+
+
+
+
+  {% endblock %}

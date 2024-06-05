@@ -1,0 +1,64 @@
+{% extends 'base.html'%}
+{% block title%}sales{% endblock %}
+{% block content%}
+<h2>my sales</h2>
+
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    make sales
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">sales details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form action="/adding_sales" method="post">
+
+                    <select name="pid" id="pid">
+                        {% for i in prods%}
+
+                        <option value="{{i[0]}}">{{i[1]}}</option>
+
+                        {% endfor %}
+                    </select><br>
+                    <label for="stock-quantity"></label><br>
+                    <input type="number" name="stock-quantity" placeholder="add stock-quantity"><br>
+                    <button type="submit" class="btn btn-primary">add</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>pid</th>
+            <th>stock quantity</th>
+            <th>created at</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in sales %}
+        <tr>
+            <td>{{s[0]}}</td>
+            <td>{{s[1]}}</td>
+            <td>{{s[2]}}</td>
+            <td>{{s[3]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
