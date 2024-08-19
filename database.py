@@ -22,6 +22,7 @@ def get_data(table_name):
 
 # to get profit per day
 def perday_profit():
+   
    dd_profit="select date(created_at) as day, sum((selling_price-buying_price)*quantity) \
       as profit from products as p join sales as s on s.pid=p.id group by date(created_at)  order by date(created_at) ;"
    cur.execute(dd_profit)
@@ -64,21 +65,21 @@ def insert_products(values):
 
 #INSERT USER
 def insert_user(values):
-   query="insert into user2(full_name,password,email)values(%s,%s,%s);"
-   cur.execute(values,query)
+   query="insert into users(full_name,email,password)values(%s,%s,%s);"
+   cur.execute(query,values)
    conn.commit()
 
 # check email
 def confirm_email(email):
-   query="select from user2 where email=%s "
-   cur.execute(query,(email))
+   query="select from users where email=%s "
+   cur.execute(query,(email,))
    data=cur.fetchone()
    return data
 
 
 #check if email and password exists
 def check_email_pass(email,password):
-    query='select * from user2 where email=%s and password=%s'
+    query='select * from users where email=%s and password=%s '
     cur.execute(query,(email,password,))
     data=cur.fetchall()
     return data
